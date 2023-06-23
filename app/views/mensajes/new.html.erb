@@ -1,0 +1,27 @@
+<html lang="en" class = "has-background-black">
+<h1  class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;">Enviar mensaje</h1>
+
+<%= form_with model: @mensaje, url: new_mensaje_path(@user, @chat, @mensaje) do |form| %>
+<div class = "is-size-3 is-uppercase has-text-weight-bold has-text-centered has-text-white">
+    <%= form.label :nombre, "Nombre:"%><br>
+    <%= form.text_field :nombre, value: current_user.name, readonly: true %>
+    <% @mensaje.errors.full_messages_for(:nombre).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+</div>
+<div class = "is-size-3 is-uppercase has-text-weight-bold has-text-centered has-text-white">
+    <%= form.label :contenido, "Escribe tu mensaje:"%><br>
+    <%= form.text_field :contenido %>
+    <% @mensaje.errors.full_messages_for(:contenido).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+</div>
+<div class = "is-size-3 is-uppercase has-text-weight-bold has-text-centered has-text-white">
+    <%= form.submit %>
+</div>
+<% end %>
+<br>
+<div class = "is-size-3 is-uppercase has-text-weight-bold has-text-centered has-text-white">
+    <%= link_to "Volver a los mensajes del chat", ver_mensajes_url(@user, @chat) %>
+</div>
+</html>

@@ -1,0 +1,21 @@
+<html lang="en" class = "has-background-black">
+<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;">Productos</h1>
+
+<body class = "columns is-gapless">
+    <ul class = "column is-size-4 has-text-centered has-text-light">
+        <% @productos.each do |producto| %>
+            <li>
+                <%= link_to producto.name, producto_url(current_user.id, producto) %>
+            </li>
+        <% end %>
+    </ul>
+    <div class = "card is-size-4 has-text-light">
+        <footer class = "card-footer has-text-centered">
+            <% if current_user.admin %>
+            <h3 class = "card-footer-item"><%= link_to "Nuevo Producto", :new_producto %> </h3>
+            <% end %>
+            <h3 class = "card-footer-item"><%= link_to "Volver", ver_path, method: :get %> </h3>
+        </footer>
+    </div>
+</body>
+</html>

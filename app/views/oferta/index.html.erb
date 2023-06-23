@@ -1,0 +1,23 @@
+<html lang="en" class = "has-background-black">
+<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;">Ofertas</h1>
+<body class = "columns is-gapless">
+  <ul class = "column is-size-4 has-text-centered has-text-light">
+    <% @ofertas.each do |oferta| %>
+      <% if oferta.subastum_id == @subasta.id %>
+          <% @ofertador = User.find_by(id: oferta.ofertor) %>
+          <% if @ofertador.present? %>
+              <p> Oferta de <%= link_to @ofertador.name, ofertum_url(@user, @producto, @compra, @subasta, oferta) %>.  <%= oferta.estado %>. Oferta de: <%= link_to oferta.monto, subastum_url(@user, @producto, @compra, @subasta, oferta) %> Dolares ninja </p>
+              </li>
+          <% end %>
+      <% end %>
+    <% end %>
+  </ul>
+  <div class = "card is-size-4 has-text-light">
+    <footer class = "card-footer has-text-centered">
+    <h3 class = "card-footer-item"><%= link_to "Nueva oferta", :new_ofertum %></h3>
+    <h3 class = "card-footer-item"><%= link_to "Volver a la subasta", subastum_url(@user, @producto, @compra, @subasta) %></h3>
+    <h3 class = "card-footer-item"><%= link_to "Volver al inicio", :root %></h3>
+    </footer>
+  </div>
+</body>
+</html>

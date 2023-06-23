@@ -1,0 +1,25 @@
+<html lang="en" class = "has-background-black">
+<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;"><%= @compra.user.name %></h1>
+<h2 class = "is-size-0.7 has-text-weight-bold has-text-centered has-text-white">Estado: <%= @subasta.estado %></h2>
+<h2 class = "is-size-0.7 has-text-weight-bold has-text-centered has-text-white">Base: <%= @subasta.base %></h1>
+<h2 class = "is-size-0.7 has-text-weight-bold has-text-centered has-text-white">Compra: <%= link_to @compra.descripcion, producto_url(@user, @producto) %></h1>
+
+<div class = "card is-size-4 has-text-light">
+  <footer class = "card-footer has-text-centered">
+  <% if current_user.id == @subasta.user_id %>
+    <h3 class = "card-footer-item">
+      <%= link_to "Editar subasta", :edit_subastum %>
+    </h3>
+    <h3 class = "card-footer-item">
+      <%= link_to "Eliminar subasta", :destroy_subastum, data: {turbo_method: :delete, turbo_confirm: "¿De veritas?"} %>
+    </h3>
+  <% end %>
+    <h3 class = "card-footer-item">
+      <%= link_to "Ofertas", ver_ofertums_url(@user, @producto, @compra, @subasta) %>
+    </h3>
+    <h3 class = "card-footer-item">
+      <%= link_to "Volver a subastas", :ver_subastums %>
+    </h3>
+  </footer>
+</div>
+</html>

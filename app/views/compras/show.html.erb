@@ -1,0 +1,27 @@
+<html lang="en" class = "has-background-black">
+<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;"><%= @compra.user.name %></h1>
+<h2 class = "is-size-0.7 has-text-weight-bold has-text-centered has-text-white">Valor: <%= @compra.valor %></h2>
+<h2 class = "is-size-0.7 has-text-weight-bold has-text-centered has-text-white">Descripcion: <%= @compra.descripcion %></h1>
+<h2 class = "is-size-0.7 has-text-weight-bold has-text-centered has-text-white">Fecha de compra: <%= @compra.created_at %></h1>
+<h2 class = "is-size-0.7 has-text-weight-bold has-text-centered has-text-white">Estado: <%= @compra.estado %></h1>
+<h2 class = "is-size-0.7 has-text-weight-bold has-text-centered has-text-white">Producto: <%= link_to @producto.name, producto_url(current_user.id, @producto) %></h1>
+
+<div class = "card is-size-4 has-text-light">
+  <footer class = "card-footer has-text-centered">
+  <% if current_user.id == @compra.user_id %>
+    <h3 class = "card-footer-item">
+      <%= link_to "Editar compra", :edit_compra %>
+    </h3>
+    <h3 class = "card-footer-item">
+      <%= link_to "Eliminar compra", :destroy_compra, data: {turbo_method: :delete, turbo_confirm: "¿De veritas?"} %>
+    </h3>
+  <% end %>
+    <h3 class = "card-footer-item">
+      <%= link_to "Subastas", ver_subastums_url(current_user, @producto, @compra) %>
+    </h3>
+    <h3 class = "card-footer-item">
+      <%= link_to "Volver a compras", :ver_compras %>
+    </h3>
+  </footer>
+</div>
+</html>

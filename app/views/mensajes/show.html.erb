@@ -1,0 +1,20 @@
+<html lang="en" class = "has-background-black">
+<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;"><%= @mensaje.nombre %></h1>
+<h2 class = "is-size-2 has-text-weight-bold has-text-centered has-text-white"><%= @mensaje.contenido %></h2>
+
+<div class = "card is-size-4 has-text-light">
+  <footer class = "card-footer has-text-centered">
+    <% if current_user.id == @mensaje.emisor %>
+      <h3 class = "card-footer-item">
+        <%= link_to "Editar mensaje", edit_mensaje_url(@user, @chat, @mensaje) %>
+      </h3>
+      <h3 class = "card-footer-item">
+        <%= link_to "Destruir mensaje", :destroy_mensaje, data: {turbo_method: :delete, turbo_confirm: "¿De veritas?"} %>
+      </h3>
+    <% end %>
+    <h3 class = "card-footer-item">
+      <%= link_to "Volver a mensajes", ver_mensajes_url(@user, @chat) %>
+    </h3>
+  </footer>
+</div>
+</html>

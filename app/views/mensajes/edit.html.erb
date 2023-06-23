@@ -1,0 +1,33 @@
+<html lang="en" class = "has-background-black">
+<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;">Editar Mensaje</h1>
+<%= form_with model: @mensaje, url: edit_mensaje_path(@user, @chat, @mensaje) do |form| %>
+    <% if @mensaje.emisor == current_user.id %>
+        <div class = "is-size-3 is-uppercase has-text-weight-bold has-text-centered has-text-white">
+            <%= form.label :nombre, "Escribe tu mensaje:"%><br>
+            <%= form.text_field :nombre, value: current_user.name, readonly: true %>
+            <% @mensaje.errors.full_messages_for(:nombre).each do |message| %>
+                <div><%= message %></div>
+            <% end %>
+        </div>
+        <div class = "is-size-3 is-uppercase has-text-weight-bold has-text-centered has-text-white">
+            <%= form.label :contenido, "Escribe tu mensaje:"%><br>
+            <%= form.text_field :contenido %>
+            <% @mensaje.errors.full_messages_for(:contenido).each do |message| %>
+                <div><%= message %></div>
+            <% end %>
+        </div>
+        <div class = "is-size-3 is-uppercase has-text-weight-bold has-text-centered has-text-white">
+            <% if @mensaje.nombre == current_user.name %>
+                <%= form.submit %>
+            <% end %>
+        </div>
+    <% else %>
+        <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white ">
+            <p>No puedes editar un mensaje si no es tuyo</p>
+        </div>
+    <% end%>
+<% end %>
+<br>
+<div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+    <%= link_to "Volver al mensaje", mensaje_url(@user, @chat, @mensaje) %>
+</div>

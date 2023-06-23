@@ -1,0 +1,48 @@
+<html lang="en" class = "has-background-black">
+<h1  class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;">Chat</h1>
+
+<body class = "columns is-gapless">
+<%= hidden_field_tag :conteo, @mensajes.count %>
+  <div class = "has-background-primary-light mx-6 px-6 py-4 has-text-centered is-size-5">
+    <% @mensajes.each do |mensaje| %>
+      <div class = "has-text-black">
+        <p><%= mensaje.nombre %>: <%= mensaje.contenido %> 
+        <% if mensaje.emisor == current_user.id %>
+          <%= raw("&nbsp" * 10)%> <%= link_to "Ver Mensaje", mensaje_url(@user, @chat, mensaje) %>
+        <% end %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+  <div class = "card is-size-4 has-text-light my-5">
+    <footer class = "card-footer has-text-centered">
+      <h3 class = "card-footer-item">
+        <%= link_to "Escribir mensaje", :new_mensaje %>
+      </h3>
+      <h3 class = "card-footer-item">
+        <%= link_to "Volver al chat", chat_url(@user, @chat) %>
+      </h3>
+      <h3 class = "card-footer-item">
+        <%= link_to "Volver al inicio", ver_path, method: :get%>
+      </h3>
+    </footer>
+  </div>
+</body>
+
+<%# Este codigo fue creado uniendo distintas paginas de documentacion y ejemplo de js %>
+<script>
+setInterval(function() {
+  fetch("<%= ver_mensajes_url(@user, @chat, format: :json) %>")
+    .then(respuesta => respuesta.json())
+    .then(data => {
+      var conteo_nuevo = data.length;
+      var conteo_pasado = parseInt(document.getElementById('conteo').value);
+      if (conteo_nuevo != conteo_pasado) {
+        location.reload();
+      }
+    });
+}, 5000);
+</script>
+
+</html>
+    

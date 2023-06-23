@@ -1,0 +1,36 @@
+<html lang="en" class = "has-background-black">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naiki</title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+</head>
+<body class = "columns is-gapless" >
+    <header class = "column">
+    <h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary " style="margin-top: 100px;">Bienvenido a Naik</h1>
+    </header>
+
+    <main class = "column">
+    <p class = "is-size-4 has-text-centered has-text-light has-background-primary-dark">La mejor plataforma de compra de zapatillas Ninja</p>
+    <div class = "has-text-centered">
+        <%= image_tag("foto_inicio/zapa_ninja.png", width: "800px")%>
+    </div>
+    </main class ="column">
+    <div class = "card">
+        <footer class = "card-footer has-text-centered" >
+            <% if user_signed_in? %>
+                <h2 class = "card-footer-item"><%= link_to "Nosotros", ver_about_us_url(current_user.id) %> </h2>
+                <h2 class = "card-footer-item"><%= link_to "Productos" , ver_productos_url(current_user.id)%></h2> 
+                <h2 class = "card-footer-item"><%= link_to "Chats", ver_chats_url(current_user.id) %> </h2>
+                <h2 class = "card-footer-item"><%= link_to "Me gustas", ver_likes_url(current_user.id) %> </h2>
+                <h2 class = "card-footer-item" > <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "button-especific"%> </h2>
+            <% else %>
+                <h2 class = "card-footer-item"><%= link_to "Nosotros", ver_about_us_url %> </h2>
+                <h2 class = "card-footer-item"><%= link_to "Sign in", new_user_session_path %> </h2> 
+                <h2 class = "card-footer-item"><%= link_to "Sign up", new_user_registration_path %></h2>
+            <% end %>
+        </footer>
+    </div>
+</body>
+</html>

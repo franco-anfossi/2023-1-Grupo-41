@@ -1,0 +1,46 @@
+<html lang="en" class = "has-background-black">
+<% @ofertador = User.find_by(id: @oferta.ofertor) %>
+<% if @ofertador.present? %>
+    <h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;"><%= @ofertador.name %></h1>
+    <h2 class = "is-size-0.7 has-text-weight-bold has-text-centered has-text-white">Estado: <%= @oferta.estado %></h2>
+    <h2 class = "is-size-0.7 has-text-weight-bold has-text-centered has-text-white">Monto: <%= @oferta.monto %></h2>
+    <% if current_user.id == @subasta.user_id %>
+        <h2 class = "is-size-0.7 has-text-weight-bold has-text-centered has-text-white"> <%= link_to "Contactar ofertor", ver_chats_url(current_user.id) %></h2>
+    <% end %>
+
+    <div class = "card is-size-4 has-text-light">
+    <footer class = "card-footer has-text-centered">
+    <% if current_user.id == @ofertador.id %>
+        <h3 class = "card-footer-item">
+        <%= link_to "Editar oferta", :edit_ofertum %>
+        </h3>
+    <% elsif current_user.id == @subasta.user_id %>
+        <h3 class = "card-footer-item">
+        <%= link_to "Editar oferta", :edit_ofertum %>
+        </h3>
+        <h3 class = "card-footer-item">
+        <%= link_to "Eliminar oferta", :destroy_ofertum, data: {turbo_method: :delete, turbo_confirm: "¿De veritas?"} %>
+        </h3>
+    <% end %>
+    <h3 class = "card-footer-item">
+        <%= link_to "Volver a ofertas", :ver_ofertums %>
+    </h3>
+    </footer>
+    </div>
+<% else %>
+
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white ">
+        <p>Oferta no disponible.</p>
+    </div>
+    <div class = "card is-size-4 has-text-light">
+    <footer class = "card-footer has-text-centered">
+        <h3 class = "card-footer-item">
+            <%= link_to "Eliminar oferta", :destroy_ofertum, data: {turbo_method: :delete, turbo_confirm: "¿De veritas?"} %>
+        </h3>
+        <h3 class = "card-footer-item">
+            <%= link_to "Volver a ofertas", :ver_oferums %>
+        </h3>
+    </footer>
+    </div>
+<% end %>
+</html>

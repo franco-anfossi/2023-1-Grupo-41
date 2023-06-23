@@ -1,0 +1,41 @@
+<html lang="en" class = "has-background-black">
+<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;" >Chats</h1>
+
+<body class = "columns is-gapless">
+    <% if @user == current_user %>
+        <h2 class ="is-size-3 is-uppercase has-text-weight-bold has-text-centered has-text-primary">Chat personal</h2>
+        <ul class = "column is-size-4 has-text-centered has-text-light">
+            <% @chats.each do |chat1| %>
+                <li>
+                    <%= link_to chat1.asunto, chat_url(current_user.id, chat1) %>
+                </li>
+            <% end %>
+        </ul>
+        <h2 class ="is-size-3 is-uppercase has-text-weight-bold has-text-centered has-text-primary">Otros chat</h2>
+        <ul class = "column is-size-4 has-text-centered has-text-light">
+            <% @users.each do |user| %>
+                <% if current_user.id != user.id %>
+                    <% user.chats.each do |chat2| %>
+                        <li>
+                            <%= link_to chat2.asunto, chat_url(user.id, chat2) %>
+                        </li>
+                    <% end %>
+                <% end %>
+            <% end %>
+        </ul>
+        <div class = "card is-size-4 has-text-light">
+            <footer class = "card-footer has-text-centered">
+                <h3 class = "card-footer-item"><%= link_to "Nuevo chat", :new_chat %> </h3> 
+                <h3 class = "card-footer-item"><%= link_to "Volver", ver_path, method: :get %> </h3>
+            </footer>
+        </div>
+    <% else %>
+        <h2 class ="is-size-3 is-uppercase has-text-weight-bold has-text-centered has-text-primary">¡Estos no son tus chats!</h2>
+        <div class = "card is-size-4 has-text-light">
+            <footer class = "card-footer has-text-centered">
+                <h3 class = "card-footer-item"><%= link_to "Volver", ver_path, method: :get %> </h3>
+            </footer>
+        </div>
+    <% end %>
+</body>
+</html>

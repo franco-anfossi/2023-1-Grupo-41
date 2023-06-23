@@ -1,0 +1,21 @@
+<html lang="en" class = "has-background-black">
+<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;"><%= @resena.usuario %></h1>
+<h2 class = "is-size-0.7 has-text-weight-bold has-text-centered has-text-white">Contenido: <%= @resena.contenido %></h2>
+<h2 class = "is-size-0.7 has-text-weight-bold has-text-centered has-text-white">Calificacion: <%= @resena.calificacion %></h2>
+
+<div class = "card is-size-4 has-text-light">
+    <footer class = "card-footer has-text-centered">
+      <% if current_user.id == @resena.user_id %>
+        <h3 class = "card-footer-item">
+          <%= link_to "Editar reseña", :edit_resena %>
+        </h3>
+        <h3 class = "card-footer-item">
+          <%= link_to "Eliminar reseña", :destroy_resena, data: {turbo_method: :delete, turbo_confirm: "¿De veritas?"} %>
+        </h3>
+      <% end %>
+      <h3 class = "card-footer-item">
+        <%= link_to "Volver a reseñas", :ver_resenas %>
+      </h3>
+    </footer>
+  </div>
+</html>

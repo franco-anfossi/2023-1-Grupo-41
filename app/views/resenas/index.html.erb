@@ -1,0 +1,19 @@
+<html lang="en" class = "has-background-black">
+<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;">Reseñas</h1>
+<body class = "columns is-gapless">
+  <ul class = "column is-size-4 has-text-centered has-text-light">
+    <% @producto.resenas.each do |resena| %>
+      <li>
+        <%= link_to resena.usuario, resena_url(@user, @producto, resena) %>
+      </li>
+    <% end %>
+  </ul>
+  <div class = "card is-size-4 has-text-light">
+    <footer class = "card-footer has-text-centered">
+      <h3 class = "card-footer-item"><%= link_to "Nueva reseña", :new_resena %></h3>
+      <h3 class = "card-footer-item"><%= link_to "Volver al producto", producto_url(@user, @producto) %></h3>
+      <h3 class = "card-footer-item"><%= link_to "Volver al inicio", :root %></h3>
+    </footer>
+  </div>
+</body>
+</html>

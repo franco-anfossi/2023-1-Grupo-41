@@ -1,0 +1,23 @@
+<html lang="en" class = "has-background-black">
+<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;">Nuevo Chat</h1>
+<% if @user == current_user %>
+    <%= form_with model: @chat, url: new_chat_path(@user, @chat) do |form| %>
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+        <%= form.label :asunto %><br>
+        <%= form.text_field :asunto %>
+        <% @chat.errors.full_messages_for(:asunto).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div>
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white"> 
+        <%= form.submit %>
+    </div>
+    <% end %>
+<% else %>
+    <h2 class ="is-size-3 is-uppercase has-text-weight-bold has-text-centered has-text-primary">¡No estas donde te corresponde!</h2>
+<% end %>
+<br>
+<div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+<%= link_to "Volver a Chats", :ver_chats %>
+</div>
+</html>

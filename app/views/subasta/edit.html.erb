@@ -1,0 +1,31 @@
+<html lang="en" class = "has-background-black">
+<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;">Editar Subasta</h1>
+<%= form_with model: @subasta, url: edit_subastum_path(@user, @producto, @compra, @subasta) do |form| %>
+    <% if @subasta.user_id == current_user.id %>
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+        <%= form.label :base %><br>
+        <%= form.number_field :base %>
+        <% @subasta.errors.full_messages_for(:base).each do |message| %>
+        <div><%= message %></div>
+        <% end %>
+    </div>
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+        <%= form.label :estado %><br>
+        <%= form.select :estado, ["Recibiendo Ofertas","Cancelado","Vendido al mejor postor"]%>
+        <% @subasta.errors.full_messages_for(:estado).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div>
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+        <%= form.submit %>
+    </div>
+    <% else %>
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white ">
+        <p>No puedes editar una subasta que no es tuya.</p>
+    </div>
+    <% end %>
+<% end %>
+<br>
+<div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+    <%= link_to "Volver a la subasta", :subastum %>
+</div>

@@ -1,0 +1,33 @@
+<html lang="en" class = "has-background-black">
+<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;">Nueva compra</h1>
+<%= form_with model: @compra, url: new_compra_path(@user, @producto, @compra) do |form| %>
+<div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+    <%= form.label :valor %><br>
+    <%= form.number_field :valor %>
+    <% @compra.errors.full_messages_for(:valor).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+</div>
+<div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+    <%= form.label :descripcion %><br>
+    <%= form.text_field :descripcion %>
+    <% @compra.errors.full_messages_for(:descripcion).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+</div>
+<div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+    <%= form.label :estado %><br>
+    <%= form.text_field :estado, value: "Pendiente de aprobación", readonly: true %>
+    <% @compra.errors.full_messages_for(:estado).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+</div>
+<div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+    <%= form.submit %>
+</div>
+<% end %>
+<br>
+<div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+    <%= link_to "Volver a compras", :ver_compras %>
+</div>
+</html>

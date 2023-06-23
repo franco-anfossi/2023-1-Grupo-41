@@ -1,0 +1,20 @@
+<html lang="en" class = "has-background-black">
+<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;">Subastas</h1>
+<body class = "columns is-gapless">
+  <ul class = "column is-size-4 has-text-centered has-text-light">
+    <% @subastas.each do |subasta| %>
+      <% @usuariocorrespondiente = User.find(subasta.user_id) %>
+      <li>
+        <p><%= @usuariocorrespondiente.name %> <%= link_to subasta.estado, subastum_url(current_user, subasta.producto_id, subasta.compra_id, subasta) %></p>
+      </li>
+    <% end %>
+  </ul>
+  <div class = "card is-size-4 has-text-light">
+    <footer class = "card-footer has-text-centered">
+    <h3 class = "card-footer-item"><%= link_to "Nueva subasta", :new_subastum %></h3>
+    <h3 class = "card-footer-item"><%= link_to "Volver a la compra", compra_url(current_user, @producto, @compra) %></h3>
+    <h3 class = "card-footer-item"><%= link_to "Volver al inicio", :root %></h3>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<html lang="en" class = "has-background-black">
+<h2 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary">Forgot your password?</h2>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="is-flex is-flex-direction-column is-align-items-center">
+    <div class = "is-size-3 is-uppercase has-text-weight-bold has-text-centered has-text-primary">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+  </div>
+
+  <div class = "is-size-6 is-uppercase has-text-weight-bold has-text-centered has-text-white" style="margin-top: 15px;">
+    <%= f.submit "Send me reset password instructions", class: "button is-primary is-medium" %>
+  </div>
+<% end %>
+<div class = "is-size-6 has-text-weight-bold has-text-centered has-text-white" style="margin-top: 15px;">
+  <%= button_to "Cancelar", ver_path, method: :get, class: "button is-primary is-medium is-outlined" %>
+</div>
+
+<%= render "devise/shared/links" %>
+</html>

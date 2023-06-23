@@ -1,0 +1,54 @@
+<html lang="en" class = "has-background-black">
+<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary " style="margin-top: 100px;">Editar Producto</h1>
+
+<%= form_with model: @producto, url: edit_producto_path(@user, @producto) do |form| %>
+    <% if current_user.admin %>
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white ">
+        <%= form.label :name %><br>
+        <%= form.text_field :name %>
+        <% @producto.errors.full_messages_for(:name).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div>
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white ">
+        <%= form.label :imagen %><br>
+        <%= form.file_field :imagen %>
+        <% @producto.errors.full_messages_for(:imagen).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div>
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white ">
+        <%= form.label :talla %><br>
+        <%= form.number_field :talla %>
+        <% @producto.errors.full_messages_for(:talla).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div>
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white ">
+        <%= form.label :color %><br>
+        <%= form.color_field :color %>
+        <% @producto.errors.full_messages_for(:color).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div>
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white ">
+        <%= form.label :precio %><br>
+        <%= form.number_field :precio %>
+        <% @producto.errors.full_messages_for(:precio).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div>
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white ">
+        <%= form.submit %>
+    </div>
+    <% else %>
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white ">
+        <p>No puedes editar un producto si no eres admin</p>
+    </div>
+    <% end %>
+<% end %>
+<br>
+<div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white ">
+<%= link_to "Volver al producto", :producto %>
+</div>
+</html>

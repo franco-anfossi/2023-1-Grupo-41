@@ -1,0 +1,33 @@
+<html lang="en" class = "has-background-black">
+<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;">Nueva reseña</h1>
+<%= form_with model: @resena, url: new_resena_path(@user, @producto, @resena) do |form| %>
+<div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+    <%= form.label :usuario %><br>
+    <%= form.text_field :usuario, value: current_user.name, readonly: true %>
+    <% @resena.errors.full_messages_for(:usuario).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+</div>
+<div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+    <%= form.label :contenido %><br>
+    <%= form.text_area :contenido %>
+    <% @resena.errors.full_messages_for(:contenido).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+</div>
+<div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white ">
+    <%= form.label :calificacion %><br>
+    <%= form.select :calificacion, [1,2,3,4,5] %>
+    <% @resena.errors.full_messages_for(:calificacion).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+</div>
+<div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+    <%= form.submit %>
+</div>
+<% end %>
+<br>
+<div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+    <%= link_to "Volver a reseñas", :ver_resenas %>
+</div>
+</html>

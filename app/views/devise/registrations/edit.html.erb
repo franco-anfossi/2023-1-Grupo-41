@@ -1,0 +1,87 @@
+<html lang="en" class = "has-background-black">
+<header>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+</header>
+<h2 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;">Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="is-flex is-flex-direction-column is-align-items-center">
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-primary center-form is-inline-block" style="text-align: center;">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "is-fullwidth" %>
+    </div>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+  <div class="is-flex is-flex-direction-column is-align-items-center">
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 15px;">
+      <%= f.label :password %> <i>(Dejar en blanco si no desea cambiar contraseña)</i><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: "is-fullwidth"%>
+      <% if @minimum_password_length %>
+        <br />
+        <em class = "is-size-6 has-text-weight-bold has-text-centered has-text-white center-form"><%= @minimum_password_length %> caracteres minimos</em>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="is-flex is-flex-direction-column is-align-items-center">
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 15px;">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+  </div>
+
+  <div class="is-flex is-flex-direction-column is-align-items-center">
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 15px;">
+      <%= f.label :current_password %> <i>(Contraseña actual)</i><br />
+      <%= f.password_field :current_password, autocomplete: "current-password" %>
+    </div>
+  </div>
+
+  <div class="is-flex is-flex-direction-column is-align-items-center">
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 15px;">
+      <%= f.label :name %> <br />
+      <%= f.text_field :name %>
+    </div>
+  </div>
+
+  <div class="is-flex is-flex-direction-column is-align-items-center">
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-primary " style="margin-top: 15px;">
+      <%= f.label :imagen %><br>
+      <%= f.file_field :imagen %>
+    </div>
+  </div>
+
+  <div class="is-flex is-flex-direction-column is-align-items-center">
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 15px;">
+      <%= f.label :telefono %> <br />
+      <%= f.text_field :telefono, autocomplete: "nuevo-telefono" %>
+      <% if @minimum_telefono_length %>
+        <br />
+        <em class = "is-size-6 has-text-weight-bold has-text-centered has-text-primary"><%= @minimum_telefono_length %> characters minimum</em>
+      <% end %>
+
+      <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 15px;">
+      <%= f.label :descripcion %> <br />
+      <%= f.text_field :descripcion, autocomplete: "nueva-descripcion" %>
+        <br />
+        <em class = "is-size-6 has-text-weight-bold has-text-centered has-text-primary">
+
+    <div class = "is-size-6 has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 15px;">
+      <%= f.submit "actualizar",  class: "button is-primary is-medium"%>
+    </div>
+  </div>
+<% end %>
+
+
+<div class = "is-size-6 has-text-weight-bold has-text-centered has-text-white" style="margin-top: 15px;">
+  <%= button_to "Cancelar mi cuenta", registration_path(resource_name), class: "button is-danger is-medium is-outlined", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+</div>
+<div class = "is-size-6 has-text-weight-bold has-text-centered has-text-white" style="margin-top: 15px;">
+  <%= button_to "Cancelar", ver_path, method: :get, class: "button is-primary is-medium is-outlined" %>
+</div>
+
+

@@ -1,0 +1,33 @@
+<html lang="en" class = "has-background-black">
+<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;">Pujar en la subasta</h1>
+<h1 class = "is-size-3 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;">
+<%= form_with model: @oferta, url: new_ofertum_path(@user, @producto, @compra, @subasta, @oferta) do |form| %>
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+        <%= form.label :monto %><br>
+        <%= form.number_field :monto, min: @subasta.base + 1  %>
+        <% @oferta.errors.full_messages_for(:monto).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div>
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+        <%= form.label :estado %><br>
+        <%= form.text_field :estado, value: "En espera de ser revisada", readonly: true %>
+        <% @oferta.errors.full_messages_for(:estado).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div>
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+        <%= form.hidden_field :ofertor, value: current_user.id, readonly: true %>
+        <% @oferta.errors.full_messages_for(:ofertor).each do |message| %>
+            <div><%= message %></div>
+        <% end %>
+    </div>
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+        <%= form.submit %>
+    </div>
+<% end %>
+<br>
+<div class = "is-size-3 has-text-weight-bold has-text-centered has-text-white">
+    <%= link_to "Volver a ofertas", :ver_ofertums %>
+</div>
+</html>

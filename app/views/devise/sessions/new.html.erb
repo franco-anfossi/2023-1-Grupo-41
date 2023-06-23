@@ -1,0 +1,35 @@
+<html lang="en" class = "has-background-black">
+<%= render "devise/shared/links" %>
+<h2 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary">Log in</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="is-flex is-flex-direction-column is-align-items-center">
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-primary" class="field" style="margin-top: 15px;">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+  </div>
+
+  <div class="is-flex is-flex-direction-column is-align-items-center">
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 15px;">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class = "is-size-3 has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 15px;">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+
+  <div class = "is-size-6 has-text-weight-bold has-text-centered has-text-white" style="margin-top: 15px;">
+    <%= f.submit "Log in", class: "button is-primary is-medium"%>
+  </div>
+<% end %>
+<div class = "is-size-6 has-text-weight-bold has-text-centered has-text-white" style="margin-top: 15px;">
+  <%= button_to "Cancelar", ver_path, method: :get, class: "button is-primary is-medium is-outlined" %>
+</div>
+</html>
+

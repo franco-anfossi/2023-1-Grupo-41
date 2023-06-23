@@ -1,0 +1,21 @@
+<html lang="en" class = "has-background-black">
+<h1 class = "is-size-1 is-uppercase has-text-weight-bold has-text-centered has-text-primary" style="margin-top: 100px;"><%= @chat.asunto %></h1>
+<div class = "card is-size-4 has-text-light" style="margin-top: 100px;">
+    <footer class = "card-footer has-text-centered">
+        <% if current_user.id == @user.id %>
+            <h3 class = "card-footer-item">
+                <%= link_to "Editar", :edit_chat %>
+            </h3>
+            <h3 class = "card-footer-item">
+                <%= link_to "Eliminar", :destroy_chat, data: {turbo_method: :delete, turbo_confirm: "¿Estas seguro?"} %>
+            </h3>
+        <% end %>
+        <h3 class = "card-footer-item">
+        <%= link_to "Mensajes", ver_mensajes_url(@user, @chat) %>
+        </h3>
+        <h3 class = "card-footer-item">
+        <%= link_to "Volver a Chats", ver_chats_url(current_user.id) %>
+        </h3>
+    </footer>
+ </div>
+ </html>
